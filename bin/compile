@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 function indent() {
   c='s/^/       /'
   case $(uname) in
@@ -28,7 +26,7 @@ for BUILDPACK in $(cat $1/.buildpacks); do
 
     if [[ "$url" =~ \.tgz$ ]]; then
       mkdir -p "$dir"
-      curl -s "$url" | tar xvz -C "$dir" >/dev/null 2>&1
+      curl -s "$url" | tar xvz -C "$dir"
     else
       git clone $url $dir >/dev/null 2>&1
       if [ -f "$dir/.gitmodules" ]; then
